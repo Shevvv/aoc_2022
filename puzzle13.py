@@ -12,21 +12,14 @@ class Packet:
         inp = inp[1:-1]
 
         i0 = 0
-        parsed = True
         count = 0
         for i, char in enumerate(inp):
             if char == '[':
-                if parsed:
-                    parsed = False
-                else:
-                    count += 1
+                count += 1
             elif char == ']':
-                if count == 0:
-                    parsed = True
-                else:
-                    count -= 1
+                count -= 1
 
-            if i == len(inp) - 1 or (inp[i + 1] == ',' and parsed):
+            if i == len(inp) - 1 or (inp[i + 1] == ',' and count == 0):
                 section = inp[i0:i + 1]
                 try:
                     section = int(section)

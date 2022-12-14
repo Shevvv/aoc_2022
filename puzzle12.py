@@ -5,7 +5,7 @@ class HeightMap:
 
     def __init__(self, inp):
         self.letter_grid = [[x for x in line] for line in inp.split('\n')]
-        self.grid = [[0 if x == 'S' else 26 if x == 'E' else ascii_lowercase.index(x) + 1 for x in line]
+        self.grid = [[0 if x == 'S' else 25 if x == 'E' else ascii_lowercase.index(x) for x in line]
                      for line in self.letter_grid]
         self.length = len(self.grid[0])
         self.width = len(self.grid)
@@ -80,7 +80,7 @@ class PathCollector:
 
     def build_start(self, start):
         if not start:
-            start_coords = self.locate_indices_of_cells(0, self.height_map)[0]
+            start_coords = self.locate_indices_of_cells('S', self.height_map.letter_grid)[0]
         elif isinstance(start, str):
             start_coords = self.locate_indices_of_cells(start, self.height_map.letter_grid)[0]
 
