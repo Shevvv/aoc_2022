@@ -148,5 +148,3 @@ sand = Sand(cave)
 while sand.add_grain():
     pass
 print(len(sand.grains))
-print(cave)
-
